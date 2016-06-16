@@ -1,0 +1,29 @@
+<html>
+<div id="chartContainer">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 590, 400);
+    data =  [{'brand': "McDonald", "sales": 41}, {'brand': "Burger King", "sales": 11.3}, {'brand': "Weddy's", "sales": 9.4}, 
+              {'brand': "KFC", "sales": 8.2}, {'brand': "Pizza Hut", "sales": 8},  {'brand': "Taco Bell", "sales": 4.3},
+              {'brand': "Starbucks", "sales": 4.1}];
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(60, 30, 510, 305)
+      var x = myChart.addCategoryAxis("x", "brand");
+       y = myChart.addAxis("y", null, "sales");
+      myChart.addSeries(null, dimple.plot.bar);
+      myChart.draw();
+      svg.append("line")          // attach a line
+         .style("stroke", "black")  // colour the line
+         .attr("x1", myChart._xPixels())     // x position of the first end of the line
+         .attr("y1", y._scale(21))      // y position of the first end of the line
+         .attr("x2", myChart._xPixels() + myChart._widthPixels())     // x position of the second end of the line
+         .attr("y2", y._scale(21));    // y position of the second end of the line  
+      svg.append("text")
+         .attr("x", myChart._xPixels() + myChart._widthPixels()/2)
+         .attr("y", y._scale(21) - 10)
+         .text("GDP of AFGANISTAN");
+  </script>
+</div>
+</html>
+
